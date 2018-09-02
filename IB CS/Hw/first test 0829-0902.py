@@ -36,7 +36,7 @@ def find_equal_sum_slice(a,b):
 # sort function.
 def basic_sort(a):
     new=[]
-    if len(a)>0:
+    while len(a)>0:
         mi=min(a)
         a.remove(mi)
         new.append(mi)
