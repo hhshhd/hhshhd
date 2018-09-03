@@ -1,4 +1,4 @@
-# Welcome to <font color=#0099ff size=8 face="行楷">hhshhd</font>'s World
+# Welcome to <font color=#0099ff size=8>hhshhd</font>'s World
 ## Contents
 
 ### Introduction
