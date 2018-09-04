@@ -1,6 +1,6 @@
 # Welcome to hhshhd's World
 ## Contents
-![image](/PA/a.png)
+![image](/Resources/a.png)
 ### Introduction
 1. Intro in text
 2. Intro in video
