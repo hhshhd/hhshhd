@@ -14,6 +14,6 @@ while x!=start:
     y=0
     for i in range(x):
         y+=1
-        print(x,'*',y,'', end='')
+        print(x,'*',y,'=',x*y,'', end='')
 else:
     print('')
