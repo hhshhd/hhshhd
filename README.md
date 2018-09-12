@@ -1,6 +1,6 @@
 # Welcome to hhshhd's World
 ## Contents
-![image](/IB CS/Option/f.png)
+![image](/Resources/a.png)
 ### Introduction
 ![image](/Resources/b.jpg)
 1. Intro in text
