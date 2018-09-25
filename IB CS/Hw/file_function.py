@@ -1,52 +1,58 @@
 def reverse_file():
     '''
-    No input parameter
-    Returns a file with lines of 'generate_file()' in reversed order
+    Write a program that reads a file and writes out a new file with the lines in reversed order 
+    (i.e. the first line in the old file becomes the last one in the new file.)
     '''
-    g=open('reverse.txt','w')
-    f=open('generation.txt','r')
-    a=f.readlines()
-    for i in range(len(a)-1,0,-1):
-        new=a[i]
-        g.write(str(new))
+    reverse=open('reverse.txt','w')
+    test=open('test.txt','r')
+    a=test.readlines()
+    for i in range(len(a)-1):
+        b=a[-i-1]
+        g.write(str(b))
     g.close()
 
 def snake_file():
     '''
-    No input parameter
-    Returns a file with lines of generate_file() which contain the string 'snake'
+    Write a program that reads a file and prints only those lines that contain the substring 'snake'.
     '''
-    h=open('snake.txt','w')
-    f=open('generation.txt','r')
-    a=f.readlines()
-    for line in a:
-        if 'snake' in line:
-            print(line)
-    h.close()
+    snake=open('test.txt','r')
+    a=snake.readlines()
+    for i in a:
+        if 'snake' in i:
+            print(i)
+    snake.close()
 
 def num_file():
     '''
-    No input parameter
-    Returns a file with first five colums of reverse_file() replaced by ordered number
+    Write a program that reads a text file and produces an output file which is a copy of the file,
+    except the first five columns of each line contain a four digit line number, 
+    followed by a space. Start numbering the first line in the output file at 1. 
+    Ensure that every line number is formatted to the same width in the output file. 
+    Use one of your Python programs as test data for this exercise: 
+    your output should be a printed and numbered listing of the Python program.
     '''
-    x=open('addnum.txt','w')
-    f=open('reverse.txt','r')
-    cnt=1001
-    for line in f:
-        x.write(str(cnt)+' '+line)
-        cnt+=1
-    x.close()
-    x=open('addnum.txt','r')
-    return x.readlines()
-
+    testnum=open('testnum.txt','w')
+    test=open('test.txt','r')
+    x=0001
+    line=test.readlines()
+    for i in line:
+        x.write(str(x)+' '+i)
+        x+=1
+    testnum.close()
+    
 def renum_file():
     '''
-    No input parameter
-    Returns a file that undoes the process of num_file()
+    Write a program that undoes the numbering of the previous exercise:
+    it should read a file with numbered lines and produce another file without line numbers.
     '''
-    y=open('readdnum.txt','w')
-    f=open('addnum.txt','r')
-    for line in f:
-        y.write(line[5:])
-    y.close()
+    reducenum=open('reducenum.txt','w')
+    test=open('testnum.txt','r')
+    a=test.readlines()
+    b=0
+    for i in a:
+        for j in i:
+            while i.isdigit():
+                b+=1
+        reducenum.write(a[b:])
+    reducenum.close()
     
