@@ -39,3 +39,33 @@ class Queue():
         return self.Queue.pop(0)
     def removeFront(self):
         return self.Queue.pop()
+
+def reversing(List):
+    test = Stack()
+    for i in List:
+        test.push(i)
+    result=''
+    for j in test:
+        result += test.pop()
+    return result
+
+def parChecker(string):
+    test = Stack()
+    balance = True
+    position = 0
+    while position < len(string) and balance == True:
+        term = string(position)
+        if term == '(' or ')':
+            if term == '(':
+                test.push(')')
+            else:
+                test.push('(')
+        else:
+            if test.isEmpty():
+                balance = False
+            else:
+                test.pop()
+    if balance and test.isEmpty():
+        return True
+    else:
+        return False
