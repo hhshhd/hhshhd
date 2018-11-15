@@ -78,8 +78,26 @@ def deci_n(num,n):
 
     return result
 
+def n_deci(num,n):
+    #Range = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    count = 0
+    result = 0
+    count_ = 0
+    for i in num:
+        count_ += 1
+        if i in 'ABCDEFGHIJKLMNOPQRSTUVWXXYZ':
+            for j in 'ABCDEFGHIJKLMNOPQRSTUVWXXYZ':
+                if j == i:
+                    break
+                count = count + 1
+            result = result + (10+count)*n**(len(num)-count_)
+        else:
+            result = result + eval(i)*n**(len(num)-count_)
+    return result
+
 print(parChecker('[]{{}'))
 print(parChecker('(([]{}{}))'))
 print(decibina(25))
 print(deci_n(50,11))
+print(n_deci('2F',16))
 
