@@ -1,0 +1,148 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Nov 18 21:16:02 2018
+
+@author: hhshhd
+"""
+
+class Stack():
+    
+    def __init__(self):
+        self.stack = []
+         
+    def itself(self):
+        return self.stack
+    
+    def isEmpty(self):
+        return self.stack == []
+
+    def push(self, item):
+        self.stack.append(item)
+
+    def pop(self):
+        return self.stack.pop()
+
+    def peek(self):
+        return self.stack[-1]
+
+    def size(self):
+        return len(self.stack)
+ 
+class Queue():
+    
+    def __init__(self):
+        self.queue = []
+     
+    def itself(self):
+        return self.queue
+    
+    def isEmpty(self):
+        return not self.Queue
+    
+    def enQueue(self,temp):
+        self.queue.insert(0,temp)
+        
+    def deQueue(self):
+        return self.queue.pop()
+    
+    def size(self):
+        return len(self.queue)
+    
+    def addRear(self,temp):
+        self.queue.insert(0,temp)
+        
+    def addFront(self,temp):
+        self.queue.append(temp)
+        
+    def removeRear(self):
+        return self.queue.pop(0)
+    
+    def removeFront(self):
+        return self.queue.pop()
+    
+    def __str__(self):
+        return str(self.queue)
+    
+def eval_postfix(postfix):
+    test = Stack()
+    token_postfix = postfix.split(' ')
+    for i in token_postfix:
+        if i.isdigit():
+            test.push(i)
+        else:
+            right = test.pop()
+            left = test.pop()
+            result = eval(left + i + right)
+            test.push(str(result))
+    return test.itself()
+            
+def postfix_infix(postfix):
+    test = Stack()
+    token_postfix = postfix.split(' ')
+    signal = ' '
+    for i in token_postfix:
+        if i.isdigit():
+            test.push(i)
+        else:
+            if i in ['**'] and signal in ['*','/','//','%','+','-']:
+                temp = test.pop()
+                temp = '(' + temp + ')'
+                test.push(temp)
+            elif i in ['*','/','//','%'] and signal in ['+','-']:
+                temp = test.pop()
+                temp = '(' + temp + ')'
+                test.push(temp)
+            right = test.pop()
+            left = test.pop()
+            result = left + i + right
+            test.push(result)
+            signal = i
+    return test.itself()
+
+print(eval_postfix('122 11 11 * -'))
+print(postfix_infix('122 11 10 30 50 - + / **'))
+
+def infix_postfix(infix):
+    test = Queue()
+    token_infix = []
+    signal = ' '
+    signall = ' '
+    for i in infix:
+        token_infix.append(i)
+    for j in token_infix:
+        if j.isdigit():
+            if signal.isdigit():
+                temp = test.deQueue()
+                temp = signal + j
+                test.enQueue(temp)
+            else:
+                test.enQueue(j)
+        elif j in ['(']:
+            continue
+        else:
+            if signall in [')']:
+                test.deQueue()
+                test.addFront(j)
+                signall = j
+                continue
+            elif j in ['**'] and signall in ['*','/','//','%','+','-']:
+                right = test.deQueue()
+                left = test.deQueue()
+                test.addFront(j)
+                test.addFront(left)
+                test.addFront(right)
+            elif j in ['*','/','//','%'] and signall in ['+','-']:
+                right = test.deQueue()
+                left = test.deQueue()
+                test.addFront(j)
+                test.addFront(left)
+                test.addFront(right)
+            else:
+                test.addFront(j)
+            signall = j
+        signal = j
+    return test.itself()
+
+print(infix_postfix('(22+3)*3'))
+print(infix_postfix('22+3*3'))
